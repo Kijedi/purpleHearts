@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.langatt.pinkhearts.Screens.HomePage
 import com.langatt.pinkhearts.Screens.ProfilePage
 import com.langatt.pinkhearts.ui.theme.PinkHeartsTheme
 
@@ -66,12 +67,14 @@ fun BottomNavigationExample() {
         },
         content = {
             Column(
-                modifier = Modifier.fillMaxSize().padding(12.dp),
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.Start
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(12.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                ProfilePage(selectedScreen)
-//                Text(text = "Selected Screen: $selectedScreen")
+//                ProfilePage(selectedScreen)
+                HomePage()
             }
         }
     )
