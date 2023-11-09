@@ -10,8 +10,8 @@ import com.langatt.pinkhearts.R
 
 val Inter = FontFamily(
     Font(R.font.inter_black, FontWeight.Black),
-    Font(R.font.inter_bold, FontWeight.Bold),
     Font(R.font.inter_light, FontWeight.Light),
+    Font(R.font.inter_bold, FontWeight.Bold),
     Font(R.font.inter_medium, FontWeight.Medium),
     Font(R.font.inter_semi_bold, FontWeight.SemiBold),
     Font(R.font.inter_thin, FontWeight.Thin),
@@ -27,7 +27,6 @@ val Typography = Typography(
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
-
     titleLarge = TextStyle(
         fontFamily = Inter,
         fontWeight = FontWeight.SemiBold,
@@ -35,14 +34,12 @@ val Typography = Typography(
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     ),
-    /* Other default text styles to override
+    labelSmall = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.5.sp
+    )
 
-labelSmall = TextStyle(
-    fontFamily = FontFamily.Default,
-    fontWeight = FontWeight.Medium,
-    fontSize = 11.sp,
-    lineHeight = 16.sp,
-    letterSpacing = 0.5.sp
-)
-*/
 )

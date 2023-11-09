@@ -1,23 +1,21 @@
 package com.langatt.pinkhearts.Screens
 
-import android.graphics.fonts.FontFamily
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Face
-import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
@@ -27,19 +25,26 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.langatt.pinkhearts.R
 
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 @Preview
 fun HomePage() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top,
+        modifier = Modifier.fillMaxSize()
     ) {
         ElevatedCard(
 
@@ -81,34 +86,47 @@ fun HomePage() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
-@Preview
 fun insights() {
     val items = listOf("Period", "Pregnancy")
-    Column {
-        items.forEach { _ ->
-            Column(modifier = Modifier.padding(vertical = 4.dp)) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Row {
-                        Icon(
-                            Icons.Rounded.ShoppingCart,
-                            contentDescription = "We are just testing",
-                            tint = MaterialTheme.colorScheme.secondary,
-                            modifier = Modifier.padding(horizontal = 8.dp)
-
-                            )
-                        
-                        Text(text = "Hello Everyone from the ")
-
-                    }
-                    Text(text = "14 Dec")
-                }
-                Spacer(modifier = Modifier.padding(vertical = 2.dp))
-                Divider(thickness = 0.5.dp)
-            }
-        }
+    Column(modifier = Modifier.padding(vertical = 40.dp, horizontal = 10.dp)) {
+        InsightData("Chance of Pregancy", R.drawable.period2, "12%", MaterialTheme.colorScheme.secondary)
+        InsightData("Period starts on", R.drawable.period, "14. Dec", MaterialTheme.colorScheme.secondary)
+        InsightData("Fertile Phase starts on", R.drawable.period3, "14. Dec", MaterialTheme.colorScheme.secondary)
     }
+}
+
+@Composable
+fun InsightText(text: String, style: TextStyle) {
+    Text(
+        text = text,
+        style = style,
+        color = MaterialTheme.colorScheme.secondary
+    )
+}
+
+@Composable
+fun InsightData(name: String, icon: Int, value: String, iconColor: Color){
+    Column(modifier = Modifier.padding(vertical = 8.dp)) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically,) {
+                Image(
+                    painterResource(icon),
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.padding(horizontal = 8.dp).width(30.dp).height(30.dp)
+                )
+                InsightText(name, MaterialTheme.typography.bodyLarge)
+            }
+            InsightText(value, MaterialTheme.typography.labelSmall)
+        }
+        Spacer(modifier = Modifier.padding(vertical = 4.dp))
+        Divider(thickness = 0.5.dp)
+    }
+
 }

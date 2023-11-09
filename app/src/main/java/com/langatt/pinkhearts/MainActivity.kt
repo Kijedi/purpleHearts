@@ -1,8 +1,10 @@
 package com.langatt.pinkhearts
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,6 +31,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.langatt.pinkhearts.Screens.CalendarPage
 import com.langatt.pinkhearts.Screens.HomePage
 import com.langatt.pinkhearts.Screens.ProfilePage
 import com.langatt.pinkhearts.ui.theme.PinkHeartsTheme
@@ -74,7 +77,7 @@ fun BottomNavigationExample() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 //                ProfilePage(selectedScreen)
-                HomePage()
+                getScreen(screen = selectedScreen)
             }
         }
     )
@@ -89,3 +92,15 @@ fun getIconForScreen(screen: String): ImageVector {
         else -> Icons.Default.Home
     }
 }
+@RequiresApi(Build.VERSION_CODES.Q)
+@Composable
+fun getScreen(screen: String): Unit {
+    return when (screen) {
+        "Home" -> HomePage()
+        "Calendar" -> CalendarPage()
+        "Profile" -> ProfilePage(screen)
+        else -> HomePage()
+    }
+}
+
+

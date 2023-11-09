@@ -1,9 +1,11 @@
 package com.langatt.pinkhearts.Screens
 
 import android.widget.DatePicker
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -26,22 +28,27 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfilePage(screen: String) {
+@Preview
+fun ProfilePage() {
     var text by rememberSaveable { mutableStateOf("") }
     var showDatePicker by remember {
         mutableStateOf(false)
     }
     val state = rememberDateRangePickerState()
-    Column {
-        Text(text = "$screen Page", style = MaterialTheme.typography.titleLarge)
+    Column( horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.Top,
+        modifier = Modifier.fillMaxSize().padding(8.dp)) {
+        Text(text = "My Data", style = MaterialTheme.typography.titleLarge)
         Column {
             OutlinedTextField(
                 value = text,
