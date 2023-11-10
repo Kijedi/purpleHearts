@@ -1,21 +1,18 @@
 package com.langatt.pinkhearts.Screens
 
-import android.widget.DatePicker
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,15 +23,15 @@ import androidx.compose.material3.DateRangePicker
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.TextField
 import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,32 +42,114 @@ fun ProfilePage() {
         mutableStateOf(false)
     }
     val state = rememberDateRangePickerState()
-    Column( horizontalAlignment = Alignment.Start,
+    Column(
+        horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Top,
-        modifier = Modifier.fillMaxSize().padding(8.dp)) {
+        modifier = Modifier
+            .padding(12.dp)
+            .fillMaxSize()
+    ) {
         Text(text = "My Data", style = MaterialTheme.typography.titleLarge)
-        Column {
-            OutlinedTextField(
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            TextField(
+                readOnly = true,
                 value = text,
+                textStyle = MaterialTheme.typography.displaySmall,
                 onValueChange = { text = it },
-                label = { Text("Name") },
-                singleLine = true
+                label = { Text("Nickname") },
+                singleLine = true,
+                modifier = Modifier.padding(vertical = 0.dp)
+//                value= "Jane Doe"
             )
-            ElevatedButton(
-                modifier = Modifier.padding(vertical = 20.dp),
-                elevation = ButtonDefaults.elevatedButtonElevation(12.dp),
-                onClick = { showDatePicker = !showDatePicker },
-                shape = RoundedCornerShape(8.dp)
+            ElevatedCard(
+                shape = RoundedCornerShape(8.dp), modifier = Modifier
+                    .padding(vertical = 10.dp)
+                    .fillMaxWidth()
             ) {
-                Text(text = "Pick Date", style = MaterialTheme.typography.bodyLarge)
+                Row(
+                    modifier = Modifier
+                        .padding(top = 10.dp)
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column {
+                        Text(
+                            text = "Period Start Data",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontSize = 20.sp,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        )
+                        Text(
+                            text = "12 Dec 2023",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontSize = 14.sp
+                        )
+                    }
+                    ElevatedButton(
+                        modifier = Modifier.padding(vertical = 20.dp),
+                        elevation = ButtonDefaults.elevatedButtonElevation(12.dp),
+                        onClick = { showDatePicker = !showDatePicker },
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text(text = "Adjust Date", style = MaterialTheme.typography.labelSmall)
+                    }
+                }
+
             }
-            if(showDatePicker){
+            ElevatedCard(
+                shape = RoundedCornerShape(8.dp), modifier = Modifier
+                    .padding(vertical = 10.dp)
+                    .fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier
+                        .padding(top = 10.dp)
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column {
+                        Text(
+                            text = "Period End Data",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontSize = 20.sp,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        )
+                        Text(
+                            text = "18 Dec 2023",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontSize = 14.sp
+                        )
+                    }
+                    ElevatedButton(
+                        modifier = Modifier.padding(vertical = 20.dp),
+                        elevation = ButtonDefaults.elevatedButtonElevation(12.dp),
+                        onClick = { showDatePicker = !showDatePicker },
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text(text = "Adjust Date", style = MaterialTheme.typography.labelSmall)
+                    }
+                }
+
+            }
+
+
+            if (showDatePicker) {
                 OutlinedCard(
-                    modifier= Modifier.fillMaxHeight(0.5f),
+                    modifier = Modifier.fillMaxHeight(0.5f),
                     shape = RoundedCornerShape(12.dp),
                     elevation = CardDefaults.elevatedCardElevation(12.dp)
                 ) {
-                    DateRangePicker(modifier = Modifier.scale(0.8F), state = state, title = {Text(text = "Period Dates")})
+                    DateRangePicker(
+                        modifier = Modifier.scale(0.8F),
+                        state = state,
+                        title = { Text(text = "Period Dates") })
                 }
             }
         }

@@ -40,6 +40,13 @@ val Typography = Typography(
         fontSize = 14.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
+    ),
+    displaySmall = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp,
+        letterSpacing = 0.5.sp,
+        lineHeight = 0.sp
     )
 
 )

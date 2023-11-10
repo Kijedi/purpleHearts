@@ -98,7 +98,7 @@ fun getScreen(screen: String): Unit {
     return when (screen) {
         "Home" -> HomePage()
         "Calendar" -> CalendarPage()
-        "Profile" -> ProfilePage(screen)
+        "Profile" -> ProfilePage()
         else -> HomePage()
     }
 }
