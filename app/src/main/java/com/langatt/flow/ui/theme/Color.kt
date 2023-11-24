@@ -1,4 +1,4 @@
-package com.langatt.pinkhearts.ui.theme
+package com.langatt.flow.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

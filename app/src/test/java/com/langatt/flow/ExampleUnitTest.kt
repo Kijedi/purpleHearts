@@ -1,4 +1,4 @@
-package com.langatt.pinkhearts
+package com.langatt.flow
 
 import org.junit.Test
 
