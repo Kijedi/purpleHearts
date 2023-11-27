@@ -29,7 +29,7 @@ val Typography = Typography(
     ),
     titleLarge = TextStyle(
         fontFamily = Inter,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Normal,
         fontSize = 28.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp

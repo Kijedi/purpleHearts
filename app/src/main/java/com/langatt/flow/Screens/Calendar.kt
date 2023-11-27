@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -36,12 +37,14 @@ import com.langatt.flow.Models.CalendarUiModel
 import com.langatt.flow.utils.CalendarDataSource
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview(showSystemUi = true)
 fun CalendarPage() {
     CalendarApp(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier
+            .fillMaxSize()
     )
 }
 
@@ -54,6 +57,7 @@ fun CalendarApp(modifier: Modifier = Modifier) {
         val calendarUiModel = dataSource.getData(lastSelectedDate = dataSource.today)
         Column(modifier = modifier.fillMaxSize()) {
             Header(data = calendarUiModel)
+            Spacer(modifier = Modifier.height(20.dp))
             Content(data = calendarUiModel)
         }
     }
@@ -61,26 +65,34 @@ fun CalendarApp(modifier: Modifier = Modifier) {
 
 @Composable
 fun Header(data: CalendarUiModel) {
-    Row {
+    Column {
         Text(
-            text = "MAY 2023",
-            fontSize = 20.sp,
-            letterSpacing = 6.sp,
-            modifier = Modifier
-                .weight(1f)
-                .align(Alignment.CenterVertically)
+            text = "My Flow Calendar",
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.padding(vertical = 12.dp)
         )
-        IconButton(onClick = { }) {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Previous"
+
+        Row {
+            Text(
+                text = "MAY 2023",
+                fontSize = 20.sp,
+                letterSpacing = 2.sp,
+                modifier = Modifier
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)
             )
-        }
-        IconButton(onClick = { }) {
-            Icon(
-                imageVector = Icons.Filled.ArrowForward,
-                contentDescription = "Next"
-            )
+            IconButton(onClick = { }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Previous"
+                )
+            }
+            IconButton(onClick = { }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowForward,
+                    contentDescription = "Next"
+                )
+            }
         }
     }
 }

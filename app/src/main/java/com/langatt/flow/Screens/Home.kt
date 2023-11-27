@@ -18,6 +18,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,48 +38,71 @@ import com.langatt.pinkhearts.R
 @Composable
 @Preview
 fun HomePage() {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        ElevatedCard(
+    Surface(modifier = Modifier.padding(12.dp)) {
 
-            shape = CircleShape,
-            elevation = CardDefaults.elevatedCardElevation(12.dp),
+        Column {
+            Text(
+                text = "My Flow App",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(vertical = 12.dp)
+            )
+            Text(
+                text = "WEDNESDAY, 20 NOV 2023".uppercase(),
+                style = MaterialTheme.typography.labelSmall,
+            )
+        }
+        Column(
+            verticalArrangement = Arrangement.Center,
             modifier = Modifier
-                .width(200.dp)
-                .height(200.dp)
+                .fillMaxSize()
+                .padding(12.dp)
         ) {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxWidth(1f)
+                    .padding(top = 40.dp)
+            ) {
+                ElevatedCard(
+                    shape = CircleShape,
+                    elevation = CardDefaults.elevatedCardElevation(12.dp),
+                    modifier = Modifier
+                        .width(200.dp)
+                        .height(200.dp)
                 ) {
-                    Text(
-                        text = "Lutheal Phase",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Light,
-                        textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.tertiary
-                    )
-                    Spacer(modifier = Modifier.padding(vertical = 4.dp))
-                    Text(
-                        text = "02",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontSize = 40.sp,
-                        textAlign = TextAlign.Center
-                    )
-                    Text(
-                        text = "DAYS",
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontSize = 10.sp,
-                        textAlign = TextAlign.Center
-                    )
+                    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = "Lutheal Phase",
+                                style = MaterialTheme.typography.titleLarge,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Light,
+                                textAlign = TextAlign.Center,
+                                color = MaterialTheme.colorScheme.tertiary
+                            )
+                            Spacer(modifier = Modifier.padding(vertical = 4.dp))
+                            Text(
+                                text = "02",
+                                style = MaterialTheme.typography.titleLarge,
+                                fontSize = 40.sp,
+                                textAlign = TextAlign.Center
+                            )
+                            Text(
+                                text = "DAYS",
+                                style = MaterialTheme.typography.bodyLarge,
+                                fontSize = 10.sp,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    }
                 }
             }
+            insights()
         }
-        insights()
     }
 }
 
@@ -87,9 +111,24 @@ fun HomePage() {
 fun insights() {
     val items = listOf("Period", "Pregnancy")
     Column(modifier = Modifier.padding(vertical = 40.dp, horizontal = 10.dp)) {
-        InsightData("Chance of Pregancy", R.drawable.period2, "12%", MaterialTheme.colorScheme.secondary)
-        InsightData("Period starts on", R.drawable.period, "14. Dec", MaterialTheme.colorScheme.secondary)
-        InsightData("Fertile Phase starts on", R.drawable.period3, "14. Dec", MaterialTheme.colorScheme.secondary)
+        InsightData(
+            "Chance of Pregancy",
+            R.drawable.period2,
+            "12%",
+            MaterialTheme.colorScheme.secondary
+        )
+        InsightData(
+            "Period starts on",
+            R.drawable.period,
+            "14. Dec",
+            MaterialTheme.colorScheme.secondary
+        )
+        InsightData(
+            "Fertile Phase starts on",
+            R.drawable.period3,
+            "14. Dec",
+            MaterialTheme.colorScheme.secondary
+        )
     }
 }
 
@@ -103,19 +142,22 @@ fun InsightText(text: String, style: TextStyle) {
 }
 
 @Composable
-fun InsightData(name: String, icon: Int, value: String, iconColor: Color){
+fun InsightData(name: String, icon: Int, value: String, iconColor: Color) {
     Column(modifier = Modifier.padding(vertical = 8.dp)) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically,) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painterResource(icon),
                     contentDescription = "",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.padding(horizontal = 8.dp).width(30.dp).height(30.dp)
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .width(30.dp)
+                        .height(30.dp)
                 )
                 InsightText(name, MaterialTheme.typography.bodyLarge)
             }
