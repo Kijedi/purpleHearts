@@ -2,7 +2,7 @@ package com.langatt.flow.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.langatt.flow.Models.CalendarUiModel
+import com.langatt.flow.models.CalendarUiModel
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.temporal.ChronoUnit

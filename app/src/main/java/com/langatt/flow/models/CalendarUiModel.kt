@@ -1,4 +1,4 @@
-package com.langatt.flow.Models
+package com.langatt.flow.models
 
 import android.os.Build
 import androidx.annotation.RequiresApi

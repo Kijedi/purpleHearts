@@ -30,9 +30,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.langatt.flow.Screens.CalendarPage
-import com.langatt.flow.Screens.HomePage
-import com.langatt.flow.Screens.ProfilePage
+import com.langatt.flow.screens.CalendarPage
+import com.langatt.flow.screens.HomePage
+import com.langatt.flow.screens.ProfilePage
 import com.langatt.flow.ui.theme.MyFlowTheme
 
 class MainActivity : ComponentActivity() {

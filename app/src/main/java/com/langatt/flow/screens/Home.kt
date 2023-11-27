@@ -1,4 +1,4 @@
-package com.langatt.flow.Screens
+package com.langatt.flow.screens
 
 import android.os.Build
 import androidx.annotation.RequiresApi
